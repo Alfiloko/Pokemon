@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personagem Pokémon</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="../static/style/styles.css">
+</head>
+<body>
+    <div class="container">
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% else %}
+            <h1>Informações do Pokémon</h1>
+            <img src="{{ sprite_url }}" alt="{{ name }}" class="pokemon-img">
+            <p><strong>Nome:</strong> {{ name }}</p>
+            <p><strong>ID:</strong> {{ id }}</p>
+            <p><strong>Altura:</strong> {{ height }}</p>
+            <p><strong>Peso:</strong> {{ weight }}</p>
+            <h2>Habilidades</h2>
+            <ul>
+                {% for ability in abilities %}
+                    <li>{{ ability }}</li>
+                {% endfor %}
+            </ul>
+            <div class="form-container">
+                <form method="get" action="{% url 'personagem' %}">
+                    <input type="text" name="pokemon" placeholder="Digite o nome ou ID" required>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
