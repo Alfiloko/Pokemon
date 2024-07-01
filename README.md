@@ -71,4 +71,3 @@ Este é um projeto Django que exibe informações sobre Pokémon usando a PokeAP
 ├── manage.py
 ├── requirements.txt
 └── README.md
-
