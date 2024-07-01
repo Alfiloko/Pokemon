@@ -13,11 +13,12 @@
             <p class="error">{{ error }}</p>
         {% else %}
             <h1>Informações do Pokémon</h1>
-            <img src="{{ sprite_url }}" alt="{{ name }}" class="pokemon-img">
+            <img src="{{ sprite_url }}" alt="{{ name }}">
             <p><strong>Nome:</strong> {{ name }}</p>
             <p><strong>ID:</strong> {{ id }}</p>
             <p><strong>Altura:</strong> {{ height }}</p>
             <p><strong>Peso:</strong> {{ weight }}</p>
+            <p><strong>Tipo:</strong> {{ types|join:", " }}</p>
             <h2>Habilidades</h2>
             <ul>
                 {% for ability in abilities %}

@@ -10,14 +10,20 @@ def personagem(request):
     if response.status_code == 200:
         data = response.json()
         name = data['name'].capitalize() 
-        sprite_url = data['sprites']['front_default']  
+        
+        sprite_pokemon = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default']  
+        if not sprite_pokemon:
+            sprite_pokemon = data['sprites']['front_default']
+            
+
         context = {
             'name': name,
             'id': data['id'],
             'height': data['height'],
             'weight': data['weight'],
-            'abilities': [ability['ability']['name'] for ability in data['abilities']],
-            'sprite_url': sprite_url  
+            'abilities': [ability['ability']['name'].capitalize() for ability in data['abilities']],
+            'types': [ptype['type']['name'].capitalize() for ptype in data ['types']],
+            'sprite_url': sprite_pokemon  
         }
     else:
         context = {'error': 'Erro ao acessar a PokeAPI'}
